@@ -5,10 +5,9 @@ import Transaction from "../models/Transaction.js"; // Ensure Transaction is als
 export const transact = async (req, res) => {
     try {
       const { amount, description } = req.body;
-      console.log("wallet des",  amount, description)
+      if (!amount || !description ) return res.status(404).json({ message: 'Wallet not found' });
 
       const wallet = await Wallet.findById(req.params.walletId);
-      console.log("wallet", wallet)
       if (!wallet) return res.status(404).json({ message: 'Wallet not found' });
       
       const newBalance = wallet.balance + amount;
