@@ -28,7 +28,7 @@ export default function WalletApp() {
       alert("Please fill in all details");
       return;
     }
-    const response = await axios.post("http://localhost:8080/api/setup", {
+    const response = await axios.post("https://mcq-live-test.onrender.com/api/setup", {
       name,
       balance,
     });
@@ -43,7 +43,7 @@ export default function WalletApp() {
       return;
     }
     const response = await axios.get(
-      `http://localhost:8080/api/wallet/${walletId}`
+      `https://mcq-live-test.onrender.com/api/wallet/${walletId}`
     );
     setWallet(response.data);
     fetchTransactions(walletId);
@@ -57,7 +57,7 @@ export default function WalletApp() {
     }
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/transact/${wallet._id}`,
+        `https://mcq-live-test.onrender.com/api/transact/${wallet._id}`,
         {
           amount: isCredit ? parseFloat(amount) : -parseFloat(amount),
           description,
@@ -73,7 +73,7 @@ export default function WalletApp() {
 
   const fetchTransactions = async (walletId) => {
     const response = await axios.get(
-      `http://localhost:8080/api/transactions?walletId=${walletId}&skip=0&limit=10`
+      `https://mcq-live-test.onrender.com/api/transactions?walletId=${walletId}&skip=0&limit=10`
     );
     setTransactions(response.data);
   };

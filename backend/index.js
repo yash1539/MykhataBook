@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],
+    origin: ["http://localhost:3000", "https://67cc9445868ad900b113966d--stellular-mooncake-4fc274.netlify.app"],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true
   })
