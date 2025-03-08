@@ -1,4 +1,3 @@
-// server.js (Entry Point)
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -30,13 +29,3 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running in port ${PORT}`));
-
-
-
-
-
-
-
-
-
-
