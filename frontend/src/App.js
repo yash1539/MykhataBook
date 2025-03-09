@@ -20,10 +20,11 @@ export default function WalletApp() {
   }, []);
 
   const createWallet = async (name, balance = 0) => {
-    if (!name || !balance) {
-      alert("Please fill in all details");
+    if (balance === "" || isNaN(balance) || balance < 0) {
+      alert("Please enter correct balance");
       return;
     }
+    
     const response = await axios.post(
       "https://mcq-live-test.onrender.com/api/setup",
       { name, balance }

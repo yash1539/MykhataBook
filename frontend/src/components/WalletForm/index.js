@@ -23,7 +23,7 @@ const WalletForm=({ createWallet })=> {
         />
         <button
           className="bg-blue-600 hover:bg-blue-800 text-white p-3 w-full rounded-lg font-semibold"
-          onClick={() => createWallet(name, parseFloat(balance) || 0)}
+          onClick={() => createWallet(name? name: "USER", parseFloat(balance) || 0)}
         >
           Create Wallet
         </button>
