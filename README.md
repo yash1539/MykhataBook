@@ -25,3 +25,14 @@ steps-
 npm install
 npm start
 npm run build
+
+
+MongoDB with Mongoose for schema validation.
+Wallet and Transaction as separate collections (1-to-Many relationship).
+Balance stored in both Wallet and Transaction for audit tracking.
+Indexes on walletId and date for faster lookups.
+PLEASE REFER MODELS
+
+LOOM- https://www.loom.com/share/95cd8f3db27b42ed8ce2718b924b71e8?sid=8e8ff5b3-3da0-4490-ba0e-2b6cf8c5a5e5
+
+DEPLOYED_URL- https://67cd21ec5e0d2d5f61c6539c--stellular-mooncake-4fc274.netlify.app/
