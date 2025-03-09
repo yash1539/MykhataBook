@@ -26,12 +26,12 @@ export default function WalletApp() {
     }
     
     const response = await axios.post(
-      "https://mcq-live-test.onrender.com/api/setup",
+      "http://localhost:8080/api/setup",
       { name, balance }
     );
     setWallet(response.data);
-    localStorage.setItem("walletId", response.data._id);
-    fetchTransactions(response.data._id);
+    localStorage.setItem("walletId", response.data.id);
+    fetchTransactions(response.data.id);
   };
 
   const fetchWallet = async (walletId) => {
@@ -40,7 +40,7 @@ export default function WalletApp() {
       return;
     }
     const response = await axios.get(
-      `https://mcq-live-test.onrender.com/api/wallet/${walletId}`
+      `http://localhost:8080/api/wallet/${walletId}`
     );
     setWallet(response.data);
     fetchTransactions(walletId);
@@ -53,14 +53,14 @@ export default function WalletApp() {
     }
     try {
       const response = await axios.post(
-        `https://mcq-live-test.onrender.com/api/transact/${wallet._id}`,
+        `http://localhost:8080/api/transact/${wallet.id}`,
         {
           amount: isCredit ? parseFloat(amount) : -parseFloat(amount),
           description,
         }
       );
       setWallet((prev) => ({ ...prev, balance: response.data.balance }));
-      fetchTransactions(wallet._id);
+      fetchTransactions(wallet.id);
     } catch (error) {
       console.error("Transaction failed:", error);
       alert("Transaction failed. Please try again.");
@@ -69,7 +69,7 @@ export default function WalletApp() {
 
   const fetchTransactions = async (walletId) => {
     const response = await axios.get(
-      `https://mcq-live-test.onrender.com/api/transactions?walletId=${walletId}&skip=0&limit=10`
+      `http://localhost:8080/api/transactions?walletId=${walletId}&skip=0&limit=10`
     );
     setTransactions(response.data);
   };

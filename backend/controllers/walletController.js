@@ -31,7 +31,12 @@ export const getWallet = async (req, res) => {
   try {
     const wallet = await Wallet.findById(req.params.id);
     if (!wallet) return res.status(404).json({ message: "Wallet not found" });
-    res.status(200).json(wallet);
+    res.status(200).json({
+      id: wallet._id,
+      name: wallet.name,
+      balance: wallet.balance.toFixed(4),
+      date: wallet.createdAt,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
