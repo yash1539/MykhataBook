@@ -14,7 +14,7 @@ export const setupWallet = async (req, res) => {
       description: "Setup",
       type: "CREDIT",
     });
-
+    await transaction.save();
     res.status(200).json({
       id: wallet._id,
       name: wallet.name,
