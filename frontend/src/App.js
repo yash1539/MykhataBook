@@ -1,18 +1,27 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header/Header";
 import WalletForm from "./components/WalletForm";
 import WalletDetails from "./components/WalletDetails";
-import TransactionList from "./components/TransactionList";
 import TransactionForm from "./components/TransactionForm";
-import { CSVLink } from "react-csv";
-import { format } from "date-fns";
+import TransactionsPage from "./components/TansactionPage";
 
 export default function WalletApp() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<WalletHome />} />
+        <Route path="/transactions" element={<TransactionsPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function WalletHome() {
   const [wallet, setWallet] = useState(null);
   const [transactions, setTransactions] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const walletId = localStorage.getItem("walletId");
@@ -25,10 +34,7 @@ export default function WalletApp() {
       return;
     }
     
-    const response = await axios.post(
-      "http://localhost:8080/api/setup",
-      { name, balance }
-    );
+    const response = await axios.post("http://localhost:8080/api/setup", { name, balance });
     setWallet(response.data);
     localStorage.setItem("walletId", response.data.id);
     fetchTransactions(response.data.id);
@@ -39,9 +45,7 @@ export default function WalletApp() {
       alert("Please create an account");
       return;
     }
-    const response = await axios.get(
-      `http://localhost:8080/api/wallet/${walletId}`
-    );
+    const response = await axios.get(`http://localhost:8080/api/wallet/${walletId}`);
     setWallet(response.data);
     fetchTransactions(walletId);
   };
@@ -81,24 +85,12 @@ export default function WalletApp() {
         <>
           <WalletDetails wallet={wallet} transactions={transactions} />
           <TransactionForm handleTransaction={handleTransaction} />
-          <CSVLink
-            data={transactions.map((tx) => ({
-              Description: tx.description,
-              Type: tx.type,
-              Amount: tx.amount.toFixed(4),
-              Date: format(new Date(tx.date), "PPpp"),
-            }))}
-            filename="transactions.csv"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800"
+          <button
+            onClick={() => navigate("/transactions")}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800 mt-4"
           >
-            Export CSV
-          </CSVLink>
-          <TransactionList
-            transactions={transactions}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            itemsPerPage={itemsPerPage}
-          />
+            View Transactions
+          </button>
         </>
       ) : (
         <WalletForm createWallet={createWallet} />
