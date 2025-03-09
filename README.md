@@ -42,6 +42,18 @@ curl --location 'http://localhost:6000/api/setup' \
     "name":"yash",
     "balance":"20"
 }'
+// trasact walletId:
+curl --location 'http://localhost:8080/api/transact/67cda8255ce56edceff6bf9d' \
+--header 'Content-Type: application/json' \
+--data '{
+    "description":"trans",
+    "amount":"-1"
+}'
+// get transaction by walletId:
+curl --location 'http://localhost:8080/api/transactions?walletId=67cda8255ce56edceff6bf9d'
+
+// get wallet by walletId
+curl --location 'http://localhost:8080/api/wallet/67cda8255ce56edceff6bf9d'
 
 
 
