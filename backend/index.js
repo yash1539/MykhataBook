@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://67cdd2b467df743b185a7072--stellular-mooncake-4fc274.netlify.app"],
+    origin: ["http://localhost:3000", "https://67cead9ce67f89e447ec9eff--stellular-mooncake-4fc274.netlify.app"],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true
   })

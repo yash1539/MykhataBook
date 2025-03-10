@@ -60,4 +60,4 @@ curl --location 'http://localhost:8080/api/wallet/67cda8255ce56edceff6bf9d'
 
 LOOM- https://www.loom.com/share/9f9fbd5d657046e998dbaf064d70bfa3?sid=3c927777-14cf-4c30-833f-925f9290aa9b
 
-DEPLOYED_URL- https://67cdd2b467df743b185a7072--stellular-mooncake-4fc274.netlify.app/
+DEPLOYED_URL- https://67cead9ce67f89e447ec9eff--stellular-mooncake-4fc274.netlify.app/
