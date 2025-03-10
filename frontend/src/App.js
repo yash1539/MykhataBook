@@ -28,7 +28,7 @@ function WalletHome() {
     if (walletId) fetchWallet(walletId);
   }, []);
 
-  const createWallet = async (name, balance = 0) => {
+  const createWallet = async (name, balance) => {
     if (balance === "" || isNaN(balance) || balance < 0) {
       alert("Please enter correct balance");
       return;
