@@ -1,6 +1,5 @@
-// controllers/transactionController.js
 import Wallet from "../models/wallet.js";
-import Transaction from "../models/Transaction.js"; // Ensure Transaction is also imported
+import Transaction from "../models/Transaction.js";
 
 export const transact = async (req, res) => {
   try {
